@@ -7,6 +7,11 @@ const gridRowsInput = document.getElementById("gridRows");
 const gridColsInput = document.getElementById("gridCols");
 const welcomeContainer = document.querySelector(".welcome-container");
 const gameContainer = document.querySelector(".game-container");
+const player1Score = document.getElementById("player1Score");
+const player2Score = document.getElementById("player2Score");
+const currentPlayerDisplay = document.getElementById("currentPlayer");
+const player1TotalPoints = document.getElementById("player1TotalPoints");
+const player2TotalPoints = document.getElementById("player2TotalPoints");
 
 let cards = [];
 let flippedCards = [];
@@ -15,6 +20,9 @@ let timerInterval = null;
 let timeElapsed = 0;
 let gridRows = 4;
 let gridCols = 4;
+let currentPlayer = 1;
+let scores = { 1: 0, 2: 0 };
+let totalPoints = { 1: 0, 2: 0 };
 
 // List of animal image filenames
 const animalImages = [
@@ -112,6 +120,14 @@ function checkForMatch() {
   if (card1.dataset.symbol === card2.dataset.symbol) {
     card1.classList.add("matched");
     card2.classList.add("matched");
+    card1.classList.add(currentPlayer === 1 ? "player1" : "player2");
+    card2.classList.add(currentPlayer === 1 ? "player1" : "player2");
+
+    scores[currentPlayer]++;
+    totalPoints[currentPlayer]++;
+    updateScores();
+    updateTotalPoints();
+
     flippedCards = [];
     
     // Check if all cards are matched
@@ -124,8 +140,24 @@ function checkForMatch() {
       card1.classList.remove("flipped");
       card2.classList.remove("flipped");
       flippedCards = [];
+      switchPlayer();
     }, 1000);
   }
+}
+
+function switchPlayer() {
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+  currentPlayerDisplay.textContent = currentPlayer;
+}
+
+function updateScores() {
+  player1Score.textContent = scores[1];
+  player2Score.textContent = scores[2];
+}
+
+function updateTotalPoints() {
+  player1TotalPoints.textContent = totalPoints[1];
+  player2TotalPoints.textContent = totalPoints[2];
 }
 
 function startTimer() {
@@ -146,6 +178,10 @@ function resetGameInfo() {
   moveCounter.textContent = moves;
   clearInterval(timerInterval); // ✅ Fix: Clear timer on game reset
   timer.textContent = "00:00";
+  scores = { 1: 0, 2: 0 };
+  updateScores();
+  currentPlayer = 1;
+  currentPlayerDisplay.textContent = currentPlayer;
 }
 
 restartBtn.addEventListener("click", () => {

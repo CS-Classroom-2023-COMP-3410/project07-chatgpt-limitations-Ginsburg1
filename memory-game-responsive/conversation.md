@@ -58,7 +58,7 @@ Change this javascript file so that the last two boxes turn green before the not
         secondsElapsed++;
         const minutes = Math.floor(secondsElapsed / 60);
         const seconds = secondsElapsed % 60;
-        timer.textContent = ${minutes}:${seconds.toString().padStart(2, "0")};
+        timer.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
       }, 1000);
     }
   

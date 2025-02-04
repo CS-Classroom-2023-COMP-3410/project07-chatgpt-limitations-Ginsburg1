@@ -136,6 +136,15 @@ body {
   .card.matched .card-back {
     background-color: #9E6F21; /* Warm Golden Brown */
   }
+
+  /* Player-specific matched card colors */
+  .card.matched.player1 .card-back {
+    background-color: #1E90FF; /* Blue for Player 1 */
+  }
+  
+  .card.matched.player2 .card-back {
+    background-color: #32CD32; /* Green for Player 2 */
+  }
   
   /* Restart button */
   #restartBtn {
@@ -151,4 +160,22 @@ body {
   #restartBtn:hover {
     background-color: #B88836;
   }
+
+  /* Scoreboard styles */
+  .scoreboard {
+    text-align: center;
+    background: #A3C585; /* Light Green */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    color: #2D4A22; /* Dark Jungle Green */
+  }
   
+  .scoreboard h2 {
+    margin-bottom: 10px;
+  }
+  
+  .scoreboard p {
+    margin: 5px 0;
+  }

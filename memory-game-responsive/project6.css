@@ -67,6 +67,8 @@
   75% { transform: rotate(-15deg); }
 }
 
+
+
 /* 🍉 Fruit Border Container */
 .fruit-border {
     position: fixed;
@@ -75,53 +77,61 @@
     width: 100vw;
     height: 100vh;
     pointer-events: none; /* Ensures game elements remain interactive */
-    z-index: 999;
+    z-index: 100;
 }
 
 /* 🍎 Individual Fruit Border Items */
 .fruit-item {
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 🎮 Centered Game Container */
 .game-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(90vw, 600px); /* Responsive width */
-    background: #fff;
-    border: 5px solid #333;
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100vw - 240px); /* 120px padding on each side */
+  height: min(calc(100vh - 240px), 600px); /* 120px padding on top and bottom, max 600px */
+  max-width: 600px; /* Maximum width */
+  background: #fff;
+  border: 5px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 🃏 Game Grid */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Adjusted min size */
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px
 }
 
 /* 🔘 Buttons */
 button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background: #6fa3ef;
-    color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #6fa3ef;
+  color: white;
+  margin: 5px;
 }
 
 button:hover {
     background: #5c8fd6;
 }
+
 /* 🎭 Assign Animations */
 .pivot-dance { animation: pivotDance 0.6s infinite; }
 .bounce-dance { animation: bounceDance 0.6s infinite; }
@@ -174,7 +184,6 @@ button:hover {
 .confetti:nth-child(5n) { background: pink; }
 
 
-
 /* General Styling */
 body {
   font-family: Arial, sans-serif;
@@ -182,16 +191,6 @@ body {
   background-color: #f5f5dc; /* Beige background */
   margin: 0;
   padding: 20px;
-}
-
-.game-container {
-  width: 80%;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background: #fff;
-  border: 2px solid #333;
-  border-radius: 10px;
 }
 
 h1 {
@@ -248,7 +247,7 @@ h1 {
 }
 
 .card-back {
-  background: #d3d3d3; /* Light gray inside */
+  background: #d3d3d3; /* Light gray inside */  
   color: black;
   transform: rotateY(180deg);
   display: flex;

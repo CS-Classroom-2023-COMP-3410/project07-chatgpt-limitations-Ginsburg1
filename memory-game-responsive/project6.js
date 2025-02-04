@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(fruitBorderContainer);
 
   const fruitOptions = ["🍎", "🍌", "🍇", "🍓", "🍒", "🍍", "🥝", "🍉"];
-  const fruitSize = 40;
+  const fruitSize = 40; // Normal size
   let screenWidth = window.innerWidth;
   let screenHeight = window.innerHeight;
 
@@ -195,16 +195,16 @@ document.addEventListener("DOMContentLoaded", () => {
       screenWidth = window.innerWidth;
       screenHeight = window.innerHeight;
 
-      const borderPadding = fruitSize * 1.5; // Ensure space around game area
+      const borderPadding = fruitSize; // Ensure space around game area
 
-      for (let x = borderPadding; x < screenWidth - borderPadding; x += fruitSize) {
-          createFruit(x, borderPadding - fruitSize); // Top row
-          createFruit(x, screenHeight - borderPadding); // Bottom row
+      for (let x = 0; x < screenWidth; x += fruitSize) {
+          createFruit(x, 0); // Top row
+          createFruit(x, screenHeight - fruitSize); // Bottom row
       }
 
-      for (let y = borderPadding; y < screenHeight - borderPadding; y += fruitSize) {
-          createFruit(borderPadding - fruitSize, y); // Left column
-          createFruit(screenWidth - borderPadding, y); // Right column
+      for (let y = fruitSize; y < screenHeight - fruitSize; y += fruitSize) {
+          createFruit(0, y); // Left column
+          createFruit(screenWidth - fruitSize, y); // Right column
       }
   }
 
@@ -216,8 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-button");
 
   startButton.addEventListener("click", () => {
-      gameContainer.style.width = "min(80vw, 600px)"; /* Expand Game */
-      gameContainer.style.top = "calc(50% + 20px)"; /* Move Down */
+      gameContainer.style.width = "calc(100vw - 60px)"; /* Expand Game */
       gameGrid.style.display = "grid"; /* Show Grid */
       generateFruitBorder(); /* Adjust Border */
   });
